@@ -2,6 +2,7 @@ package com.dinhhuy258.vintellij.comrade.core
 
 import com.dinhhuy258.vintellij.VintellijManager
 import com.dinhhuy258.vintellij.comrade.buffer.SyncBufferManager
+import com.dinhhuy258.vintellij.comrade.insight.InsightProcessor
 import com.dinhhuy258.vintellij.comrade.parseIPV4String
 import com.dinhhuy258.vintellij.neovim.ApiInfo
 import com.dinhhuy258.vintellij.neovim.Client
@@ -47,6 +48,7 @@ class NvimInstance(private val address: String, onClose: (Throwable?) -> Unit) :
         client.api.command("echom \"Vintellij LSP connected.\"")
 
         client.registerHandler(bufManager)
+        client.registerHandler(InsightProcessor)
         client.registerHandler(VintellijManager(this))
         log.info("Vintelilj LSP has been created for connection '$connection'")
         connected = true
@@ -87,3 +89,4 @@ private fun isWindows(): Boolean {
     val osStr = System.getProperty("os.name").toLowerCase()
     return osStr.contains("win")
 }
+

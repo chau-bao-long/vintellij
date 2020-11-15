@@ -14,6 +14,8 @@ function! vintellij#buffer#Register(buf, channel, lines, isEnableSync) abort
       call vintellij#buffer#enableSyncBufWriteCmd(a:buf)
     endif
 
+    call vintellij#sign#Clear(a:buf)
+
     if !empty(a:lines)
         call nvim_buf_set_lines(a:buf, 0, -1, v:true, a:lines)
         " treat the buffer as an unmodified one since its content is the same
@@ -29,6 +31,8 @@ function! vintellij#buffer#Unregister(buf) abort
 
     if l:has_channel
       call vintellij#buffer#disableSyncBufWriteCmd(a:buf)
+      call vintellij#sign#SetSigns(a:buf)
+      call vintellij#highlight#SetHighlights(a:buf)
     endif
 endfunction
 

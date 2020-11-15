@@ -103,6 +103,15 @@ fu! vintellij#SyncBufferToggle(bang) abort
         \ }, v:false)
 endfu
 
+fu! vintellij#SetInsights(channel, buf, insight_map)
+  let l:channel = vintellij#bvar#get(a:buf, 'channel')
+  if l:channel == a:channel
+    call vintellij#bvar#set(a:buf, 'insight_map', a:insight_map)
+    call vintellij#sign#SetSigns(a:buf)
+    call vintellij#highlight#SetHighlights(a:buf)
+  endif
+endfu
+
 function! vintellij#AddImport(import)
   let l:lineNumber = 1
   let l:maxLine = line('$')
@@ -121,4 +130,3 @@ endfunction
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
-

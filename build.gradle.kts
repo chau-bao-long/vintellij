@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.dinhhuy258.vintellij"
-version = "1.0.4"
+version = "1.0.5"
 
 buildscript {
     repositories { mavenCentral() }

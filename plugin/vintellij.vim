@@ -1,6 +1,9 @@
 command! VintellijOpenFile call vintellij#OpenFile()
 command! VintellijSuggestImports call vintellij#SuggestImports()
 command! -bang VintellijSyncBufferToggle call vintellij#SyncBufferToggle(<bang>0)
+command! -nargs=0 ComradeNextInsight call vintellij#insight_jump#Jump("after")
+command! -nargs=0 ComradePrevInsight call vintellij#insight_jump#Jump("before")
+
 
 let s:path = fnamemodify(resolve(expand('<sfile>:p')), ':h')
 let s:init_path = s:path . '/vintellij_init.py'
